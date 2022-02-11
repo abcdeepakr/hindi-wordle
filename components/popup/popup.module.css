@@ -1,0 +1,27 @@
+.parent{
+    width: 20%;
+    float: right;
+    animation: error 20s ease-in both;
+}
+
+@keyframes error {
+    0%{
+        transform: translateY(-100%);
+    }
+    3%{
+        transform: translateY(100%);
+    }
+    80%{
+        opacity : 50%
+    }
+    100%{
+        transform: translateY(100%);
+        opacity:0%;
+    }
+}
+
+.close{
+    margin-right: 0%;
+    float: right;
+    cursor: pointer;
+}

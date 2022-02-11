@@ -1,0 +1,52 @@
+.mainGrid{
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+    /* width: 60%; */
+    margin: 5px;
+    flex-direction: row;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+}
+.cell {
+    
+    border: 1px solid black;
+    height: 50px;
+    width: 50px;
+    font-size: 30px;
+    background: var(--key-bg);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    margin: 4px;
+    /* flex: 1; */
+    /* transition: background-color 0.3s ease-in-out; */
+}
+.present{
+    background-color: yellow;
+}
+.absent{
+    background-color: grey;
+}
+.correct{
+    background-color: green;
+}
+@media only screen and (max-height: 800px) {
+    .cell {
+    
+        
+        height: 40px;
+        width: 40px;
+        background: var(--key-bg);
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        margin: 4px;
+        /* flex: 1; */
+        /* transition: background-color 0.3s ease-in-out; */
+    }
+  }

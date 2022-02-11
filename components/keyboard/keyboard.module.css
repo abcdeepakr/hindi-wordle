@@ -1,0 +1,69 @@
+.keyDiv,.present,.absent,.correct {
+    font-size: calc(var(--fs-tiny) + 1px);
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 1px solid black;
+    border-radius: 4px;
+    height: 58px;
+    background: var(--key-bg);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    flex: 1;
+    transition: background-color 0.3s ease-in-out;
+}
+.present{
+    background-color: yellow;
+}
+.correct{
+    background-color: green;
+}
+.keyboard {
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%);
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2px;
+    
+    
+}
+.row {
+    width: 100%;
+    display: flex;
+    margin: 0 auto 8px;
+    padding: 0 8px;
+    gap: 6px;
+}
+.row:nth-of-type(2) {
+    padding: 0 30px;
+}
+
+  @media only screen and (max-width: 1100px) {
+    .keyboard {
+        width: 100%;
+    }
+  }
+  
+  @media only screen and (max-width: 360px) {
+    .keyDiv {
+        height: 80px;
+    }
+    .keyboard {
+        flex-wrap: wrap;
+    }
+    
+  }
+  @media only screen and (max-height: 800px) {
+    .keyboard {
+        bottom: 2%;
+        height: auto;
+    }
+    .keyDiv {
+        height: 50px;
+    }
+    
+  }
