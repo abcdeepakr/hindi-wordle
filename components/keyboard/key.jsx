@@ -60,6 +60,9 @@ function Key(props) {
         } else if (words[0][wordLength].indexOf(guessedWord) == -1) {
             // stateValueContext.dispatchState({ type: "UPDATE_KEYBOARD", keyColours: keyboardColorMapping })
             // alert("WORD NOT FOUND")
+            if(stateValueContext.stateValue.position == wordLength*6+1 ){
+                showWord()
+            }
             stateValueContext.dispatchState({ type: "UPDATE_POPUPMESSAGE", popupData: {state:true, message:"शब्द नहीं मिला"} })
             
             setTimeout(() => {
@@ -69,9 +72,8 @@ function Key(props) {
         } else if (words[0][wordLength].indexOf(guessedWord) != -1) {
             stateValueContext.dispatchState({ type: "UPDATE_KEYBOARD", keyColours: keyboardColorMapping })
             stateValueContext.dispatchState({ type: "UPDATE_COLOURS", colours: currentColours })
-
-            // setNewRow(true)
             stateValueContext.dispatchState({ type: "ALLOWROW", allow: true })
+            showWord()
             // stateValueContext.dispatchState({ type: "UPDATE_POPUPMESSAGE", popupData: {state:true, message:"BDHOOND TE RAHIYE"} })
             
             // setTimeout(() => {
@@ -79,9 +81,18 @@ function Key(props) {
             // }, 1000);
             // alert("word present but not correct")
         }
-
     }
-    
+    const showWord = () =>{
+        let todaysWord = stateValueContext.stateValue.todaysWord
+        let wordLength = todaysWord.length
+        if(stateValueContext.stateValue.position == wordLength*6+1 ){
+             stateValueContext.dispatchState({ type: "UPDATE_POPUPMESSAGE", popupData: {state:true, message:todaysWord} })
+            
+            setTimeout(() => {
+                stateValueContext.dispatchState({ type: "UPDATE_POPUPMESSAGE", popupData: {state:false, message:""} })
+            }, 20000);
+        }
+    }
     const updateCellMapping = (cellValue) => {
 
         let position = stateValueContext.stateValue.position
@@ -110,7 +121,7 @@ function Key(props) {
 
 
         }
-
+console.log(stateValueContext.stateValue.position)
     }
     return (
         <React.Fragment>

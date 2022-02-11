@@ -11,7 +11,7 @@ function WordleGrid() {
         setSelectedWord(randomWord)
         
     }
-
+    
 
     let wordarr = words[0].words
     wordarr.map(word => {

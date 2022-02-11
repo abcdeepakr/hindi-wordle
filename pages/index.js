@@ -10,6 +10,7 @@ export const AppContext = createContext();
 import Grid from "../components/grid/grid";
 export default function Home() {
   const [stateVal, dispatch] = useReducer(reducer, initialState);
+  console.log(stateVal)
   return (
     <AppContext.Provider
       value={{ stateValue: stateVal, dispatchState: dispatch }}>
