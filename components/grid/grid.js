@@ -6,12 +6,7 @@ import { AppContext } from "../../pages/index";
 function Grid() {
   const stateValueContext = useContext(AppContext);
   
-  const [gridCount, setGridCount] = useState(1)
-  let correct = "green"
-  let incorrect = "grey"
-  let present = "yellow"
   let colourMapping = stateValueContext.stateValue.colorMapping
-  console.log(colourMapping)
   return (
     <div className={styles.mainGrid}>
       {[1,2,3,4,5,6].map(rowNumber =>{

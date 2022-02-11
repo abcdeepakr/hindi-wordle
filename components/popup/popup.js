@@ -7,9 +7,7 @@ function Popup(props) {
     return (
       <div className={styles.parent}>
         <Alert variant="danger">
-          <h6 className={styles.close} onClick={props.closeErrorPopup}>
-            ❌{" "}
-          </h6>
+          
           {props.children}
         </Alert>
       </div>

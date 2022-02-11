@@ -9,26 +9,26 @@ function Key(props) {
     const stateValueContext = useContext(AppContext);
     const [newRow, setNewRow] = useState(true)
     const [Popup, setShowPopup] = useState({ message: "", show: false })
-    console.log(stateValueContext.stateValue.todaysWord)
+    
     const checkWord = (cellValue) => {
 
         let todaysWord = stateValueContext.stateValue.todaysWord
         let wordLength = stateValueContext.stateValue.todaysWord.length
         let mapSequence = stateValueContext.stateValue.mapSequence
         let allGuesses = Object.keys(mapSequence)
-        console.log(todaysWord)
+        
         // let currentGuessSlice =  allGuesses.length/(allGuesses.length/wordLength)
         // let slicedArray = allGuesses.slice(currentGuessSlice+1)
 
-        // console.log(slicedArray)
+        
         let slicedArray = allGuesses.slice(allGuesses.length - wordLength)
-        console.log(slicedArray)
+        
         let currentColours = { ...stateValueContext.stateValue.colorMapping }
         let solution = stateValueContext.stateValue.solution
         let keyboardColorMapping = { ...stateValueContext.stateValue.keyBoardMapping }
         slicedArray.map(position => {
             if (solution[position % wordLength] == mapSequence[position]) {
-                console.log(mapSequence[position], "green")
+                
                 keyboardColorMapping[mapSequence[position]] = "#009432"
                 currentColours[position] = "#009432" //green
             } else if (todaysWord.includes(mapSequence[position]) && solution[position % wordLength] != mapSequence[position]) {
@@ -45,25 +45,39 @@ function Key(props) {
         }, "");
 
         if (guessedWord == todaysWord) {
+            stateValueContext.dispatchState({ type: "UPDATE_POPUPMESSAGE", popupData: {state:true, message:"सही उत्तर !!!!!! बहुत उम्दा खेले आप"} })
             stateValueContext.dispatchState({ type: "UPDATE_COLOURS", colours: currentColours })
             stateValueContext.dispatchState({ type: "UPDATE_KEYBOARD", keyColours: keyboardColorMapping })
             // alert("GUESSED THE CORRECT WORD : ", todaysWord)
             
             setShowPopup({ type: "correct", show: "true" })
-
-            console.log("GUESSED WORD IS : ", guessedWord)
+            
+            
+            setTimeout(() => {
+                stateValueContext.dispatchState({ type: "UPDATE_POPUPMESSAGE", popupData: {state:false, message:""} })
+            }, 5000);
 
         } else if (words[0][wordLength].indexOf(guessedWord) == -1) {
             // stateValueContext.dispatchState({ type: "UPDATE_KEYBOARD", keyColours: keyboardColorMapping })
-            alert("WORD NOT FOUND")
-            console.log("word not found")
+            // alert("WORD NOT FOUND")
+            stateValueContext.dispatchState({ type: "UPDATE_POPUPMESSAGE", popupData: {state:true, message:"शब्द नहीं मिला"} })
+            
+            setTimeout(() => {
+                stateValueContext.dispatchState({ type: "UPDATE_POPUPMESSAGE", popupData: {state:false, message:""} })
+            }, 1000);
+            
         } else if (words[0][wordLength].indexOf(guessedWord) != -1) {
             stateValueContext.dispatchState({ type: "UPDATE_KEYBOARD", keyColours: keyboardColorMapping })
             stateValueContext.dispatchState({ type: "UPDATE_COLOURS", colours: currentColours })
 
             // setNewRow(true)
             stateValueContext.dispatchState({ type: "ALLOWROW", allow: true })
-            alert("word present but not correct")
+            // stateValueContext.dispatchState({ type: "UPDATE_POPUPMESSAGE", popupData: {state:true, message:"BDHOOND TE RAHIYE"} })
+            
+            // setTimeout(() => {
+            //     stateValueContext.dispatchState({ type: "UPDATE_POPUPMESSAGE", popupData: {state:false, message:""} })
+            // }, 1000);
+            // alert("word present but not correct")
         }
 
     }
@@ -77,7 +91,7 @@ function Key(props) {
 
             stateValueContext.dispatchState({ type: "REMOVE", cellValue: cellValue })
             stateValueContext.dispatchState({ type: "ALLOWROW", allow: true })
-            console.log(position)
+            
         }
 
         else if (cellValue == "Enter" && (position % wordLength == 1 && position != 1)) {
@@ -96,11 +110,6 @@ function Key(props) {
 
 
         }
-        console.log("STATE VALUE", stateValueContext.stateValue.mapSequence)
-        console.log("NEW ROW", stateValueContext.stateValue.newRow)
-        console.log("POSITION", stateValueContext.stateValue.position)
-        console.log("WORD", stateValueContext.stateValue.todaysWord)
-        console.log("SOLUTION", stateValueContext.stateValue.solution)
 
     }
     return (

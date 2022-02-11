@@ -6,10 +6,7 @@ import words from '../../data/words.json'
 import { AppContext } from "../../pages/index";
 function Keyboard() {
     const stateValueContext = useContext(AppContext);
-    const onClick = () =>{
-        console.log('val')
-    }
-    console.log(stateValueContext.stateValue.keyBoardMapping)
+    
   return (
     <div className={styles.keyboard}>
               {/* <button
