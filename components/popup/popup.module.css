@@ -24,8 +24,14 @@
 }
 
   
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 512px) {
     .parent {
         width: 80%;
     }
 }
+/* 
+@media only screen and (max-width: 360px) {
+    .parent {
+        width: 80%;
+    }
+} */
